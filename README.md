@@ -4,6 +4,7 @@ The idea here is to develop a list of movies using the React framework. The link
 
 ## To run
 
-1. run babel-cli --watch
-2. webpack -D --watch
+1. npm install
+2. npm install -g webpack-cli
+2. webpack -d -w
 3. live-server
