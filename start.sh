@@ -1,2 +1,3 @@
 npm install -g babel-cli webpack
-babel . --out-dir client/compiled --presets=react --ignore=node_modules,client/compiled --source-maps inline &
+babel . --out-dir "compiled" --ignore=node_modules,"compiled" --source-maps inline --watch &
+# ./node_modules/webpack/bin/webpack.js --config webpack.config.js -D --watch &

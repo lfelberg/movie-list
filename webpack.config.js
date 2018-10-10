@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: './client/src/index.jsx',
+  entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'src/dist'),
+    path: path.resolve(__dirname, './dist/'),
     filename: 'movie-list.bundle.js'
   },
   mode: 'development',
@@ -12,13 +12,19 @@ module.exports = {
       { 
         test: /\.jsx$/, 
         exclude: /(node_modules)/,
+        include: path.join(__dirname, '/src/'),
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react', 'react-dom']
+            presets: ['@babel/env', '@babel/react', '@babel/stage-0']
           }
         }
       }
-    ]
+    ],
+    // externals: { // for redux??
+    //   'react/addons': true, // important!!
+    //   'react/lib/ReactContext': true,
+    //   'react/lib/ExecutionEnvironment': true
+    // }
   },
 };

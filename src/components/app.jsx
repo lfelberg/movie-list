@@ -5,16 +5,15 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      movies = [
+      movies: [
         {title: 'Mean Girls'},
         {title: 'Hackers'},
         {title: 'The Grey'},
         {title: 'Sunshine'},
         {title: 'Ex Machina'},
-      ];
+      ]
     };
   }
-
 
   render() {
     return (
