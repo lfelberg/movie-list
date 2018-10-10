@@ -1,10 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-const MovieListEntry = ({ movie}) => (
-  <div className="movielistentry">
-    <h2>{movie.title}</h2>
-  </div>
-);
+const MovieListEntry = ({ movie }) => {
+  let id = '';
+
+  if (movie.title === 'Title not found!') {
+    id = 'notfound';
+  }
+
+  return (
+    <div className="movielistentry" id={id}>
+      <h2>{movie.title}</h2>
+    </div>
+  );
+};
 
 export default MovieListEntry;
