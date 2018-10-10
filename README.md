@@ -60,5 +60,9 @@ If you don't want to start servers yet, but want to add more to your front end, 
 - [ ] Add a sorting mechanism so the user can sort on rating or other properties
 - [ ] Refactor search to allow users to search for movies with a specific director or actor/actress
 
+### Level 5
 
-- [] 
+- [ ] Create a server that listens on port 3000 and responds to all requests with "Hello World" 
+- [ ] In your request handler, when a GET request is made to /api/movies, respond with a list of movies (just start with some made up list)
+- [ ] Confirm, using postman, that your route works as expected and responds to all other requests with "Hello World"
+- [ ] Refactor your front end to get the list of movie titles from the server, instead of using a hardcoded list of movie titles
