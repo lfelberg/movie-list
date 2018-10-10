@@ -1,4 +1,4 @@
-import MovieList from './movieList.js';
+import MovieList from './movieList.jsx';
 
 class App extends React.Component {
   constructor(props) {
