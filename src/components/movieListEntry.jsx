@@ -1,6 +1,10 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-export default MovieListEntry = ({ movie }) => (
+const MovieListEntry = ({ movie}) => (
   <div className="movielistentry">
     <h2>{movie.title}</h2>
   </div>
 );
+
+export default MovieListEntry;

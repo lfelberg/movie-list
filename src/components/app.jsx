@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import MovieList from './movieList.jsx';
 
 class App extends React.Component {
@@ -18,7 +20,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
-        <h1>This is my app</h1>
+        <h1>Movie List</h1>
         <MovieList movies={this.state.movies} />
       </div>
     );

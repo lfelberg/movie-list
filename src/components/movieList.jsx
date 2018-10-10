@@ -1,7 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import MovieListEntry from './movieListEntry.jsx';
 
-export default MovieList = ({ movies }) => {
-  const movieListAll = movies.map((movie, i) => (<MovieListEntry movie={movie} id={i} />))  
+const MovieList = ({ movies }) => {
+  const movieListAll = movies.map((movie, i) => (<MovieListEntry movie={movie} key={i} />))
 
   return (
     <div className="movielist">
@@ -9,3 +11,5 @@ export default MovieList = ({ movies }) => {
     </div>
   );
 };
+
+export default MovieList;
