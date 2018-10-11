@@ -9,18 +9,18 @@ class App extends React.Component {
 
     this.state = {
       movies: [
-        {title: 'Mean Girls'},
-        {title: 'Hackers'},
-        {title: 'The Grey'},
-        {title: 'Sunshine'},
-        {title: 'Ex Machina'},
-      ]
+
+      ],
+      watched: [
+
+      ],
     };
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
-  handleSearch(query = null) {
+  handleSearch(query) {
     const moviesFiltered = this.state.movies.filter((movie) => {
       return movie.title.toLowerCase().includes(query.toLowerCase())
     });
@@ -28,14 +28,22 @@ class App extends React.Component {
     if (moviesFiltered.length === 0) {
       moviesFiltered.push({title: 'Title not found!'});
     }
-
     this.setState({ movies: moviesFiltered });
+  }
+
+  handleAdd(movieTitle) {
+    const movies = this.state.movies.concat();
+    movies.push({ title: movieTitle });
+    this.setState({ movies });
   }
 
   render() {
     return (
       <div className='app'>
-        <Nav handleSearch={this.handleSearch}/>
+        <Nav
+          handleSearch={this.handleSearch}
+          handleAdd={this.handleAdd}
+        />
         <h1>movie list</h1>
         <MovieList movies={this.state.movies} />
       </div>
