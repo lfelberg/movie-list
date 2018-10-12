@@ -9,22 +9,31 @@ body {
 
 h1 {
   color: slate;
-  margin-bottom: 15px;  
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.nav {
+  font-size: 20px;
 }
 
 .movielistentry {
   background: #fff;
   border: solid 1px black;
   padding: 10px;
-  margin-bottom: -1px; 
+  margin-bottom: -1px;
 }
 
 .search {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   display: flex;
   justify-content: right;
 }
 
 #notfound {
   color: red;
+}
+
+.watched {
+  display: inline-block;
 }

@@ -3,6 +3,10 @@ import React from 'react';
 const SearchBar = ({handleSearch}) => {
   let searchInput = React.createRef();
 
+  const handleReset = (event) => {
+    event.preventDefault();
+  };
+
   const handleSearchInSearch = (event) => {
     event.preventDefault();
     const search = searchInput.current.value;
@@ -10,8 +14,20 @@ const SearchBar = ({handleSearch}) => {
       searchInput.current.value = '';
       handleSearch(search);
     }
-  }
+  };
 
+  const handleSearchInText = (event) => {
+    const search = searchInput.current.value;
+    if (search !== '') {
+      handleSearch(search);
+    }
+  };
+
+          // <button
+          //   type="submit"
+          //   className="btn btn-dark"
+          //   onClick={handleReset}
+          // >clear</button>
   return (
     <div className="search">
       <form className="searchbar">
@@ -21,6 +37,7 @@ const SearchBar = ({handleSearch}) => {
             className="form-control"
             placeholder="look up movie"
             ref={searchInput}
+            onChange={handleSearchInText}
           />
           <button
             type="submit"
