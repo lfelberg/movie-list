@@ -9,59 +9,44 @@ class App extends React.Component {
 
     this.state = {
       movies: [
-        {title: 'Mean Girls'},
-        {title: 'Hackers'},
-        {title: 'The Grey'},
-        {title: 'Sunshine'},
-        {title: 'Ex Machina'},
+        {title: 'Mean Girls', watched: false},
+        {title: 'Hackers', watched: false},
+        {title: 'The Grey', watched: false},
+        {title: 'Sunshine', watched: false},
+        {title: 'Ex Machina', watched: false},
       ],
-      watched: [ ],
-      searched: [
-        {title: 'Mean Girls'},
-        {title: 'Hackers'},
-        {title: 'The Grey'},
-        {title: 'Sunshine'},
-        {title: 'Ex Machina'},
-      ],
+      query: '',
+      watched: false,
     };
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleWatchedTab = this.handleWatchedTab.bind(this);
     this.handleWatchedToggle = this.handleWatchedToggle.bind(this);
   }
 
   handleAdd(movieTitle) {
-    const movies = [{ title: movieTitle }].concat(this.state.movies);
-    this.setState({ movies, searched: movies });
+    const movies = [{ title: movieTitle, watched: this.state.watched }].concat(this.state.movies);
+    this.setState({ movies });
   }
 
   handleSearch(query) {
-    const moviesFiltered = this.state.movies.filter((movie) => {
-      return movie.title.toLowerCase().includes(query.toLowerCase())
-    });
+    this.setState({ query });
+  }
 
-    if (moviesFiltered.length === 0) {
-      moviesFiltered.push({title: 'Title not found!'});
-    }
-    this.setState({ searched: moviesFiltered });
+  handleWatchedTab(watched) {
+    this.setState({ watched });
   }
 
   handleWatchedToggle(title) {
-    let idx = this.state.movies.findIndex(item => (item.title === title));
-    let watched = [];
-    let movies = [];
-
-    if (idx !== -1) {
-      watched = [{ title }].concat(this.state.watched);
-      movies = this.state.movies.concat();
-      movies.splice(idx, 1);
-    } else {
-      idx = this.state.watched.findIndex(item => (item.title === title));
-      movies = [{ title }].concat(this.state.movies);
-      watched = this.state.watched.concat();
-      watched.splice(idx, 1);
-    }
-    this.setState({ searched: movies, movies, watched });
+    const movies = this.state.movies.concat()
+    movies.forEach((movie) => {
+      if (title === movie.title) {
+        movie.watched = !(movie.watched);
+      }
+    });
+    this.setState({ movies });
+    console.log(this.state.movies, 'watched', this.state.watched);
   }
 
   render() {
@@ -71,10 +56,13 @@ class App extends React.Component {
         <Nav
           handleSearch={this.handleSearch}
           handleAdd={this.handleAdd}
+          handleWatchedTab={this.handleWatchedTab}
         />
         <MovieList
-          movies={this.state.searched}
-          handleWatched={this.handleWatchedToggle}
+          movies={this.state.movies}
+          query={this.state.query}
+          watched={this.state.watched}
+          toggle={this.handleWatchedToggle}
         />
       </div>
     );

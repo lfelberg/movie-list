@@ -18,16 +18,9 @@ const SearchBar = ({handleSearch}) => {
 
   const handleSearchInText = (event) => {
     const search = searchInput.current.value;
-    if (search !== '') {
-      handleSearch(search);
-    }
+    handleSearch(search);
   };
 
-          // <button
-          //   type="submit"
-          //   className="btn btn-dark"
-          //   onClick={handleReset}
-          // >clear</button>
   return (
     <div className="search">
       <form className="searchbar">
