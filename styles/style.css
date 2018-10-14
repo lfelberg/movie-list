@@ -24,6 +24,10 @@ h1 {
   margin-bottom: -1px;
 }
 
+.btn {
+  display: inline-block;
+}
+
 .search {
   margin-bottom: 0px;
   display: flex;
