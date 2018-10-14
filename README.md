@@ -29,15 +29,15 @@ The idea here is to develop a list of movies using the React framework. The link
 
 [Gist link](https://gist.github.com/beth/f447b5a6c9e3ce292469307e515f5cb1)
 
-- [ ] Add an input field for users to add movies.
-- [ ] Display only user added movies, not the hardcoded data.
+- [Complete] Add an input field for users to add movies.
+- [Complete] Display only user added movies, not the hardcoded data.
 
 ### Level 3
 
 [Gist link](https://gist.github.com/beth/2513507e9233161a5b0ba1adb7434ffa)
 
-- [ ] Add a button to each list item that allows the user to toggle a 'watched' property.
-- [ ] Add two buttons to allow the users to toggle between a list of 'watched' movies and movies 'to watch'.
+- [Complete] Add a button to each list item that allows the user to toggle a 'watched' property.
+- [Complete] Add two buttons to allow the users to toggle between a list of 'watched' movies and movies 'to watch'.
 
 ### Level 4
 
