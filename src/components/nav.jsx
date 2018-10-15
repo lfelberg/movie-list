@@ -8,7 +8,6 @@ const Nav = ({ handleSearch, handleAdd, handleWatchedTab }) => {
   let temp = '';
 
   const handleWatchedTabClick = (event) => {
-
     //TODO: change active tab
     temp = watchedActive;
     watchedActive = toWatchActive;

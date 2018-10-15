@@ -9,11 +9,42 @@ class App extends React.Component {
 
     this.state = {
       movies: [
-        {title: 'Mean Girls', watched: false},
-        {title: 'Hackers', watched: false},
-        {title: 'The Grey', watched: false},
-        {title: 'Sunshine', watched: false},
-        {title: 'Ex Machina', watched: false},
+        { details: {
+            title: 'Mean Girls',
+            year: 2007,
+          },
+          watched: false,
+          expanded: false,
+        },
+        { details: {
+            title: 'The Grey',
+            year: 2012,
+          },
+          watched: false,
+          expanded: false,
+
+        },
+        { details: {
+            title: 'Hackers',
+            year: 2017,
+          },
+          expanded: false,
+          watched: false,
+        },
+        { details: {
+            title: 'Sunshine',
+            year: 1997,
+          },
+          expanded: false,
+          watched: false,
+        },
+        { details: {
+            title: 'Ex Machina',
+            year: 2007,
+          },
+          expanded: false,
+          watched: false,
+        },
       ],
       query: '',
       watched: false,
@@ -22,11 +53,15 @@ class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleWatchedTab = this.handleWatchedTab.bind(this);
-    this.handleWatchedToggle = this.handleWatchedToggle.bind(this);
+    this.handleMovieToggle = this.handleMovieToggle.bind(this);
   }
 
   handleAdd(movieTitle) {
-    const movies = [{ title: movieTitle, watched: this.state.watched }].concat(this.state.movies);
+    const movies = [{
+      details: {title: movieTitle, year: 2010},
+      watched: this.state.watched,
+      expanded: false,
+      }].concat(this.state.movies);
     this.setState({ movies });
   }
 
@@ -38,15 +73,19 @@ class App extends React.Component {
     this.setState({ watched });
   }
 
-  handleWatchedToggle(title) {
+  handleMovieToggle(title, type = 'watched') {
     const movies = this.state.movies.concat()
     movies.forEach((movie) => {
-      if (title === movie.title) {
-        movie.watched = !(movie.watched);
+      if (title === movie.details.title) {
+        if (type === 'watched') {
+          movie.watched = !(movie.watched);
+          console.log(movie);
+        } else if (type === 'expand') {
+          movie.expanded = !(movie.expanded);
+        }
       }
     });
     this.setState({ movies });
-    console.log(this.state.movies, 'watched', this.state.watched);
   }
 
   render() {
@@ -62,7 +101,7 @@ class App extends React.Component {
           movies={this.state.movies}
           query={this.state.query}
           watched={this.state.watched}
-          toggle={this.handleWatchedToggle}
+          toggle={this.handleMovieToggle}
         />
       </div>
     );

@@ -13,9 +13,6 @@ h1 {
   text-align: right;
 }
 
-.nav {
-  font-size: 20px;
-}
 
 .movielistentry {
   background: #fff;
@@ -24,8 +21,30 @@ h1 {
   margin-bottom: -1px;
 }
 
-.btn {
+.movie-title {
   display: inline-block;
+  margin-bottom: 0px;
+}
+
+.watched-btn {
+  display: inline-block;
+  justify-content: right;
+}
+
+.movielistentry {
+  text-decoration: none;
+}
+
+.details {
+  text-decoration: none;
+}
+
+/******************************
+*********** NAV ***************
+******************************/
+
+.nav {
+  font-size: 20px;
 }
 
 .search {

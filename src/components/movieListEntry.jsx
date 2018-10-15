@@ -1,33 +1,56 @@
 import React from 'react';
 
-const MovieListEntry = ({ movie, handleWatched }) => {
+const MovieListEntry = ({ movie, handleToggle }) => {
   let id = '';
-  let buttonValue = '';
-  let buttonClr = 'btn btn-dark';
+  let details = [];
   let hidden = false;
+  let buttonClr = 'btn watched-btn ';
+  const buttonValue = (movie.watched === true) ? 'To watch' : 'Watched';
+  buttonClr += (movie.watched === true) ? 'btn-dark' : 'btn-secondary';
 
-  if ('watched' in movie) {
-    buttonValue = (movie.watched === true) ? 'To watch' : 'Watched';
-    buttonClr = "btn btn-secondary";
+  if (movie.expanded === true) {
+    for (let detail in movie.details) {
+      if (detail !== 'title') {
+        console.log('test', detail, movie.details[detail]);
+        details.push((<p>{detail}: {movie.details[detail]}</p> ));
+      }
+    }
   }
 
   if (movie.title === 'Title not found!') {
     id = 'notfound';
-    hidden = true
+    hidden = true;
   }
 
-  const handleWatchedClick = (event) => {
-    handleWatched(movie.title);
+  const handleMovieToggle = (event) => {
+    event.preventDefault();
+    handleToggle(movie.details.title, 'expand');
   };
+
+  const handleWatchedToggle = (event) => {
+    event.preventDefault();
+    handleToggle(movie.details.title, 'watched');
+  }
 
   return (
     <div className="movielistentry container" id={id}>
-      <h2>{movie.title}</h2>
-      <button
-      className={buttonClr}
-      onClick={handleWatchedClick}
-      hidden={hidden}
-      >{buttonValue}</button>
+        <div className="row">
+          <div className="col-10">
+            <a href="#" onClick={handleMovieToggle}>
+              <h2 className="movie-title">{movie.details.title}</h2>
+            </a>
+            <div className="details">
+              {details}
+            </div>
+          </div>
+          <div className="col-sm">
+            <button
+            className={buttonClr}
+            onClick={handleWatchedToggle}
+            hidden={hidden}
+            >{buttonValue}</button>
+          </div>
+        </div>
     </div>
   );
 };

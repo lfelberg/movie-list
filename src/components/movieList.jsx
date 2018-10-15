@@ -6,7 +6,7 @@ const MovieList = ({ movies, query, watched, toggle }) => {
   let moviesQueried = movies.concat();
 
   moviesQueried = moviesQueried.filter(movie =>
-    (movie.title.toLowerCase().includes(query.toLowerCase()) &&
+    (movie.details.title.toLowerCase().includes(query.toLowerCase()) &&
     movie.watched === watched));
 
   if (query !== '' && moviesQueried.length === 0) {
@@ -14,7 +14,7 @@ const MovieList = ({ movies, query, watched, toggle }) => {
   }
 
   const movieListAll = moviesQueried.map((movie, i) =>
-    (<MovieListEntry movie={movie} key={i} handleWatched={toggle} />)
+    (<MovieListEntry movie={movie} key={i} handleToggle={toggle} />)
   );
 
   return (
