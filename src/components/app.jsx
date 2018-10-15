@@ -25,13 +25,13 @@ class App extends React.Component {
 
   searchDB(newMovies) {
     const movies = newMovies.map((newMovie) => {
-      const date = newMovie.release_date.split('-').map(date => Number(date));
+      const date = new Date(newMovie.release_date);
       return {
         details: {
           title: newMovie.title,
-          photo: newMovie.poster_path,
+          photo: `https://image.tmdb.org/t/p/w600_and_h900_bestv2/${newMovie.poster_path}`,
           Vote: newMovie.vote_average,
-          'Release Date': `${date[1]}, ${date[2]}, ${date[0]}`,
+          'Release Date': `${date.toDateString()}`,
           Synopsis: newMovie.overview,
         },
         id: newMovie.id,

@@ -12,13 +12,16 @@ const MovieListEntry = ({ movie, handleToggle }) => {
   if (movie.expanded === true) {
     let counter = 0;
     for (let detail in movie.details) {
-      if (detail !== 'title') {
+      if (detail === 'photo') {
+        details.push((<img className='movie-poster'
+          src={movie.details[detail]}
+          alt={movie.details[detail]}/>
+          ));
+      } else if (detail !== 'title') {
         details.push((<p key={counter} className="movie-detail">{detail}: {movie.details[detail]}</p> ));
         counter += 1;
       }
     }
-
-    //watchedButton = ();
   }
 
   if (movie.title === 'Title not found!') {
