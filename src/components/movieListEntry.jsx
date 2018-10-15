@@ -3,18 +3,22 @@ import React from 'react';
 const MovieListEntry = ({ movie, handleToggle }) => {
   let id = '';
   let details = [];
+  let watchedButton = '';
   let hidden = false;
   let buttonClr = 'btn watched-btn ';
   const buttonValue = (movie.watched === true) ? 'To watch' : 'Watched';
   buttonClr += (movie.watched === true) ? 'btn-dark' : 'btn-secondary';
 
   if (movie.expanded === true) {
+    let counter = 0;
     for (let detail in movie.details) {
       if (detail !== 'title') {
-        console.log('test', detail, movie.details[detail]);
-        details.push((<p>{detail}: {movie.details[detail]}</p> ));
+        details.push((<p key={counter} className="movie-detail">{detail}: {movie.details[detail]}</p> ));
+        counter += 1;
       }
     }
+
+    //watchedButton = ();
   }
 
   if (movie.title === 'Title not found!') {
@@ -45,9 +49,9 @@ const MovieListEntry = ({ movie, handleToggle }) => {
           </div>
           <div className="col-sm">
             <button
-            className={buttonClr}
-            onClick={handleWatchedToggle}
-            hidden={hidden}
+              className={buttonClr}
+              onClick={handleWatchedToggle}
+              hidden={hidden}
             >{buttonValue}</button>
           </div>
         </div>

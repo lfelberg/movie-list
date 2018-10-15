@@ -5,60 +5,47 @@ import Nav from './nav.jsx';
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      movies: [
-        { details: {
-            title: 'Mean Girls',
-            year: 2007,
-          },
-          watched: false,
-          expanded: false,
-        },
-        { details: {
-            title: 'The Grey',
-            year: 2012,
-          },
-          watched: false,
-          expanded: false,
-
-        },
-        { details: {
-            title: 'Hackers',
-            year: 2017,
-          },
-          expanded: false,
-          watched: false,
-        },
-        { details: {
-            title: 'Sunshine',
-            year: 1997,
-          },
-          expanded: false,
-          watched: false,
-        },
-        { details: {
-            title: 'Ex Machina',
-            year: 2007,
-          },
-          expanded: false,
-          watched: false,
-        },
-      ],
+      movies: [],
       query: '',
       watched: false,
     };
 
+    this.searchMovieDB = this.props.searchMovieDB.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleWatchedTab = this.handleWatchedTab.bind(this);
     this.handleMovieToggle = this.handleMovieToggle.bind(this);
+    this.searchDB = this.searchDB.bind(this);
+
+    this.searchMovieDB({}, this.searchDB.bind(this));
+  }
+
+  searchDB(newMovies) {
+    const movies = newMovies.map((newMovie) => {
+      const date = newMovie.release_date.split('-').map(date => Number(date));
+      return {
+        details: {
+          title: newMovie.title,
+          photo: newMovie.poster_path,
+          Vote: newMovie.vote_average,
+          'Release Date': `${date[1]}, ${date[2]}, ${date[0]}`,
+          Synopsis: newMovie.overview,
+        },
+        id: newMovie.id,
+        watched: this.state.watched,
+        expanded: false,
+      }
+    });
+
+    this.setState({ movies });
   }
 
   handleAdd(movieTitle) {
     const movies = [{
-      details: {title: movieTitle, year: 2010},
+      details: {title: movieTitle, Year: 2010},
       watched: this.state.watched,
       expanded: false,
       }].concat(this.state.movies);
@@ -79,7 +66,6 @@ class App extends React.Component {
       if (title === movie.details.title) {
         if (type === 'watched') {
           movie.watched = !(movie.watched);
-          console.log(movie);
         } else if (type === 'expand') {
           movie.expanded = !(movie.expanded);
         }
